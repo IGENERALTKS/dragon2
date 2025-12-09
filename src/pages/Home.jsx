@@ -32,9 +32,11 @@ export default function Home(){
 
 
     function nextPage() {
-    const next = page + 1;
-    setPage(next);
-    fetchCharacters(next);
+        if (page < 5) {
+            const next = page + 1;
+            setPage(next);
+            fetchCharacters(next);
+        }
 }
     function previousPage() {
         if (page > 1) {
@@ -75,6 +77,12 @@ export default function Home(){
     return(
         <div className="container">
             <h1>Dragon Ball Characters</h1>
+            <header>
+            <div className="botoesPrincipais">
+                <button>Personagens</button>
+                <button>Planetas</button>
+            </div>
+            </header>
 
             <div className="cards-grid">
                 {characters.map((char) => (
@@ -91,15 +99,9 @@ export default function Home(){
             {errorMsg && <p className="loading">{errorMsg}</p>}
 
             
-            <div className="previousPageBtn">
-                <button onClick={previousPage} disabled={page === 1}>Anterior</button>
-            </div>
-
-            <div className="nextPageBtn">
-                <button onClick={nextPage}>Próximo</button>                
-            </div>
-
             <div className="search-box">
+                <button onClick={previousPage} disabled={page === 1}>Anterior</button>          
+
                 <input 
                     type="number" 
                     placeholder="Digite uma página de (1/5)" 
@@ -107,6 +109,8 @@ export default function Home(){
                     onChange={(e) => setPage(e.target.value)} 
                 />
                 <button onClick={handleSearch}>Buscar</button>
+                <button onClick={nextPage}>Próximo</button>                
+
             </div>
         </div>   
     );
