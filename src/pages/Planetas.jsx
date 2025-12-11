@@ -15,7 +15,7 @@ export default function Home(){
 
         try{
             const response = await  axios.get(
-                `https://dragonball-api.com/api/characters?page=${p}&limit=12`
+                `https://dragonball-api.com/api/planets?page=${p}&limit=10`
             );
 
             if(!response.data.items || response.data.items.length === 0){
@@ -62,7 +62,7 @@ export default function Home(){
 
             try{
                 const response = await axios.get(
-                    "https://dragonball-api.com/api/characters?page=1&limit=12"
+                    "https://dragonball-api.com/api/planets?page=1&limit=10"
                 );
                 setCharacters(response.data.items);
             } catch(error){
@@ -76,11 +76,11 @@ export default function Home(){
     
     return(
         <div className="container">
-            <h1>Dragon Ball Characters</h1>
+            <h1>Dragon Ball Planets</h1>
             <header>
             <div className="botoesPrincipais">
-                <button href="./Planetas.jsx">Personagens</button>
-                <a href="./Planetas.jsx" class="btn btn-primary btn-lg">Planetas</a>
+                <a href="Home.jsx">Personagens</a>
+                <a href="Planetas.jsx">Planetas</a>
             </div>
             </header>
 
